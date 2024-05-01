@@ -1,4 +1,6 @@
 using Infra.ConexaoBD;
+using Infra.Interfaces;
+using Infra.Servicos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ITimeRepository, ServicoTime>();
+builder.Services.AddScoped<IRepositoryEstadio, ServicoEstadio>();
+builder.Services.AddScoped<IRepositoryJogador, ServicoJogador>();
+builder.Services.AddScoped<IRepositoryJogo, ServicoJogo>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -29,5 +36,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin();
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
 
 app.Run();
