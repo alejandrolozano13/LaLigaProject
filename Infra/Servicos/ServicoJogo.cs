@@ -5,7 +5,7 @@ namespace Infra.Servicos
 {
     public class ServicoJogo : IRepositoryJogo
     {
-        public void Adicionar(Jogo modelo)
+        public Task Adicionar(Jogo modelo)
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace Infra.Servicos
             throw new NotImplementedException();
         }
 
-        public void Remover(Jogo modelo)
+        public Task Remover(Jogo modelo)
         {
             throw new NotImplementedException();
         }

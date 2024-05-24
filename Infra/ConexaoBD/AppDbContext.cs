@@ -5,6 +5,10 @@ namespace Infra.ConexaoBD
 {
     public class AppDbContext: DbContext
     {
+        public AppDbContext()
+        {
+        }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Time> Times { get; set; }

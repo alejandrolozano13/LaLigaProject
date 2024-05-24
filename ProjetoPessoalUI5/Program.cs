@@ -1,3 +1,6 @@
+using Dominio.Modelos;
+using Dominio.Validacoes;
+using FluentValidation;
 using Infra.ConexaoBD;
 using Infra.Interfaces;
 using Infra.Servicos;
@@ -16,6 +19,7 @@ builder.Services.AddScoped<ITimeRepository, ServicoTime>();
 builder.Services.AddScoped<IRepositoryEstadio, ServicoEstadio>();
 builder.Services.AddScoped<IRepositoryJogador, ServicoJogador>();
 builder.Services.AddScoped<IRepositoryJogo, ServicoJogo>();
+builder.Services.AddScoped<IValidator<Time>, ValidadorTime>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

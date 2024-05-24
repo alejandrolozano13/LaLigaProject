@@ -5,7 +5,7 @@ namespace Infra.Servicos
 {
     public class ServicoEstadio : IRepositoryEstadio
     {
-        public void Adicionar(Estadio modelo)
+        public Task Adicionar(Estadio modelo)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace Infra.Servicos
             throw new NotImplementedException();
         }
 
-        public void Remover(Estadio modelo)
+        public Task Remover(Estadio modelo)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,7 @@
-﻿using Infra.Interfaces;
+﻿using Dominio.Modelos;
+using Infra.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.Xml;
 
 namespace ProjetoPessoalUI5.Controllers
 {
@@ -15,31 +17,32 @@ namespace ProjetoPessoalUI5.Controllers
         }
 
         [HttpGet]
-        public IActionResult ObterTodos()
+        public OkObjectResult ObterTodos()
         {
-            try
-            {
-                var time = _timeRepository.ObterTodos();
-                return Ok(time);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var time = _timeRepository.ObterTodos();
+            return Ok(time);
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        public OkObjectResult ObterPorId(int id)
         {
-            try
-            {
-                var time = _timeRepository.ObterPorId(id);
-                return Ok(time);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var time = _timeRepository.ObterPorId(id);
+            return Ok(time);
+        }
+
+        [HttpPost("adicionar-time")]
+        public async Task<CreatedResult> Adicionar([FromBody] Time time)
+        {
+            var uri = Url.Action("adicionar-time", new { id = time.Id });
+            await _timeRepository.Adicionar(time);
+            return Created(uri, time);
+        }
+
+        [HttpDelete]
+        public NoContentResult Remover(Time time)
+        {
+            _timeRepository.Remover(time);
+            return NoContent();
         }
     }
 }

@@ -4,8 +4,8 @@
     {
         List<T> ObterTodos();
         T ObterPorId(int id);
-        void Adicionar(T modelo);
-        void Remover (T modelo);
+        Task Adicionar(T modelo);
+        Task Remover (T modelo);
         void Atualizar (T modelo);
     }
 }
